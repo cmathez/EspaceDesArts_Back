@@ -23,8 +23,10 @@ public class Message {
 	private Date date;
 	
 	@ManyToOne
-	@JoinColumn(name="idUtilisateur")
+	@JoinColumn(name="idUtilisateur", referencedColumnName = "idUtilisateur")
 	private Utilisateur utilisateur;
+	
+	
 	
 	public Message() {
 		super();

@@ -22,10 +22,9 @@ import com.inti.service.interfaces.IOeuvreService;
 @RestController
 @RequestMapping("/gestionOeuvre")
 public class OeuvreController {
-	
+
 	@Autowired
 	IOeuvreService oeuvreService;
-	
 
 	@RequestMapping(value="/oeuvre", method=RequestMethod.POST)
 	public String saveOeuvre(@RequestParam("nomOeuvre") String nomOeuvre, @RequestParam("description") String description, @RequestParam("file") MultipartFile file) {//@RequestBody Oeuvre oeuvre) {
@@ -44,22 +43,22 @@ public class OeuvreController {
 			return "Non";
 		}
 	}
-	
-	@RequestMapping(value="/oeuvre", method=RequestMethod.PUT)
+
+	@RequestMapping(value = "/oeuvre", method = RequestMethod.PUT)
 	public Oeuvre updateOeuvre(@RequestBody Oeuvre oeuvre) {
 		return oeuvreService.saveOeuvre(oeuvre);
 	}
-	
+
 	@GetMapping("/oeuvre")
 	public List<Oeuvre> findAll() {
 		return oeuvreService.findAll();
 	}
-	
+
 	@GetMapping("/oeuvre/{idOeuvre}")
 	public Oeuvre findOeuvreById(@PathVariable("idOeuvre") Long id) {
 		return oeuvreService.findOeuvreById(id);
 	}
-	
+
 	@DeleteMapping("/oeuvre/{idOeuvre}")
 	public void deleteOeuvre(@PathVariable("idOeuvre") Long id) {
 		oeuvreService.deleteOeuvre(id);
