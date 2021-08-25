@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Utilisateur implements Serializable{
@@ -43,19 +46,20 @@ public class Utilisateur implements Serializable{
 	private Set<Role> roles = new HashSet<Role>();
 	
 	// Association avec Message
-	/*
-	@OneToMany
-	@JoinColumn(name = "idUtilisateur", referencedColumnName = "idUtilisateur")
-	private Message message; // mettre getter et setter
-	*/
-
 	
-	private boolean enabled = true;
+	@JsonBackReference
+	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
+	private List<Message> messages;
 	
 	
 	// Association avec ReservationEspace
-	@OneToMany(mappedBy = "utilisateur")
+	@OneToMany(mappedBy = "proprio", cascade = CascadeType.REMOVE)
+	private List<ReservationEspace> detenteurEspaces;
+	
+	@OneToMany(mappedBy = "artiste", cascade = CascadeType.REMOVE)
 	private List<ReservationEspace> reservationEspaces;
+	
+	private boolean enabled = true;
 	
 	// Constructeurs
 		// Sans params
@@ -178,6 +182,23 @@ public class Utilisateur implements Serializable{
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+
+	public List<ReservationEspace> getReservationEspaces() {
+		return reservationEspaces;
+	}
+
+	public void setReservationEspaces(List<ReservationEspace> reservationEspaces) {
+		this.reservationEspaces = reservationEspaces;
 	}
 
 	@Override
