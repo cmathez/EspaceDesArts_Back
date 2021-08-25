@@ -17,7 +17,7 @@ import com.inti.modele.UtilisateurDetail;
 import com.inti.service.interfaces.IUtilisateurService;
 
 @Service
-public class AppUserDetailService implements UserDetailsService {
+public class AppUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	private IUtilisateurService utilisateurService;
