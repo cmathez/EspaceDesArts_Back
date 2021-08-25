@@ -3,6 +3,7 @@ package com.inti.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Utilisateur implements Serializable{
@@ -36,6 +38,11 @@ public class Utilisateur implements Serializable{
 	private Set<Role> roles = new HashSet<Role>();
 	
 	private boolean enabled = true;
+	
+	
+	// Association avec ReservationEspace
+	@OneToMany(mappedBy = "utilisateur")
+	private List<ReservationEspace> reservationEspaces;
 	
 	// Constructeurs
 		// Sans params
