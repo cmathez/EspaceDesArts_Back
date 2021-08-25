@@ -20,6 +20,9 @@ public class EspaceExposition {
 	@OneToMany(mappedBy="espaceExposition")
 	private List<Oeuvre> oeuvres;
 	
+	@OneToMany(mappedBy = "espaceExposition")
+	private List<ReservationEspace> reservationEspaces;
+	
 	public EspaceExposition() {
 		super();
 	}
@@ -71,6 +74,15 @@ public class EspaceExposition {
 	public void setOeuvres(List<Oeuvre> oeuvres) {
 		this.oeuvres = oeuvres;
 	}
+
+	public List<ReservationEspace> getReservationEspaces() {
+		return reservationEspaces;
+	}
+
+	public void setReservationEspaces(List<ReservationEspace> reservationEspaces) {
+		this.reservationEspaces = reservationEspaces;
+	}
+	
 	
 	
 }

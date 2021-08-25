@@ -3,6 +3,7 @@ package com.inti.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -50,6 +51,11 @@ public class Utilisateur implements Serializable{
 
 	
 	private boolean enabled = true;
+	
+	
+	// Association avec ReservationEspace
+	@OneToMany(mappedBy = "utilisateur")
+	private List<ReservationEspace> reservationEspaces;
 	
 	// Constructeurs
 		// Sans params

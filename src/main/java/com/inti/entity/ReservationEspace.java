@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -21,6 +23,16 @@ public class ReservationEspace {
 	@OneToMany(mappedBy = "reservationEspace")
 	private List<Evenement> evenements;
 
+	@ManyToOne
+	@JoinColumn(name = "idEspaceExposition", referencedColumnName = "idEspaceExposition")
+	private EspaceExposition espaceExposition;
+
+	// Association avec Utilisateur
+	@ManyToOne
+	@JoinColumn(name = "idUtilisateur", referencedColumnName = "idUtilisateur")
+	private Utilisateur utilisateur;
+	
+	
 	public ReservationEspace() {
 		super();
 	}
@@ -68,6 +80,14 @@ public class ReservationEspace {
 
 	public void setEvenements(List<Evenement> evenements) {
 		this.evenements = evenements;
+	}
+
+	public EspaceExposition getEspaceExposition() {
+		return espaceExposition;
+	}
+
+	public void setEspaceExposition(EspaceExposition espaceExposition) {
+		this.espaceExposition = espaceExposition;
 	}
 
 	@Override

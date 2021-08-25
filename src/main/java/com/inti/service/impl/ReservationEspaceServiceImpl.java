@@ -3,11 +3,13 @@ package com.inti.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.inti.entity.ReservationEspace;
 import com.inti.repository.ReservationEspaceRepository;
 import com.inti.service.interfaces.IReservationEspaceService;
 
+@Service
 public class ReservationEspaceServiceImpl implements IReservationEspaceService{
 
 	@Autowired
