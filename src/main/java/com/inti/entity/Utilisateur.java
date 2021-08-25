@@ -23,9 +23,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Utilisateur implements Serializable{
 	
 	// Attributs 
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idUtilisateur;
 	private String username;
 	private String password;
