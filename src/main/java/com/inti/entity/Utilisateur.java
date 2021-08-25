@@ -8,6 +8,9 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -18,6 +21,8 @@ public class Utilisateur implements Serializable{
 	
 	// Attributs 
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUtilisateur;
 	private String username;
 	private String password;
@@ -36,6 +41,14 @@ public class Utilisateur implements Serializable{
 			inverseJoinColumns = {@JoinColumn(name="idRole", table ="role", 
 			referencedColumnName = "idRole")})
 	private Set<Role> roles = new HashSet<Role>();
+	
+	// Association avec Message
+	/*
+	@OneToMany
+	@JoinColumn(name = "idUtilisateur", referencedColumnName = "idUtilisateur")
+	private Message message; // mettre getter et setter
+	*/
+
 	
 	private boolean enabled = true;
 	
