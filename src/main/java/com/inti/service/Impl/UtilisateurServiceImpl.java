@@ -1,4 +1,4 @@
-package com.inti.service.Impl;
+package com.inti.service.impl;
 
 import java.util.List;
 
