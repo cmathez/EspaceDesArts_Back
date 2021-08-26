@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.inti.entity.Utilisateur;
 import com.inti.service.interfaces.IUtilisateurService;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/gestionUtilisateur")
 public class UtilisateurController {
