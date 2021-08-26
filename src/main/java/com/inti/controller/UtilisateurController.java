@@ -1,5 +1,6 @@
 package com.inti.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class UtilisateurController {
 		user.setPrenom(prenom);
 		user.setNom(nom);
 		user.setPhotoProfil(file.getBytes());
+		user.setDateInscription(new Date());
 		serviceUtilisateur.saveUtilisateur(user);
 		return "Tout va bin";
 		} catch(Exception e) {
