@@ -3,13 +3,14 @@
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.entity.Utilisateur;
 import com.inti.service.interfaces.IUtilisateurService;
-
-@RestController
+	@CrossOrigin
+	@RestController
 	@RequestMapping(value = "/login")
 	public class LoginController {
 		

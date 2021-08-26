@@ -1,7 +1,9 @@
 package com.inti.entity;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Oeuvre {
@@ -22,9 +27,40 @@ public class Oeuvre {
 	@Lob
 	private byte[] imageOeuvre;
 	
+	
+	//association avec espace exposition
 	@ManyToOne
 	@JoinColumn(name="idEspaceExposition")
 	private EspaceExposition espaceExposition;
+	
+	//association avec avis
+//	@JsonBackReference
+//	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
+//	private List<Avis> avis;
+	
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
+	private List<Avis> avisOeuvre;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.REMOVE)
+	private List<Avis> avisEspaceExposition;
+	
+
+	
+	//association avec reclamation
+//	@JsonBackReference
+//	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
+//	private List<Reclamation> reclamations;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
+	private List<Reclamation> reclamationOeuvre;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.REMOVE)
+	private List<Reclamation> reclamationEspaceExposition;
 	
 	public Oeuvre() {
 		super();
@@ -94,4 +130,37 @@ public class Oeuvre {
 	public void setImageOeuvre(byte[] imageOeuvre) {
 		this.imageOeuvre = imageOeuvre;
 	}
+
+	public List<Avis> getAvisOeuvre() {
+		return avisOeuvre;
+	}
+
+	public void setAvisOeuvre(List<Avis> avisOeuvre) {
+		this.avisOeuvre = avisOeuvre;
+	}
+
+	public List<Avis> getAvisEspaceExposition() {
+		return avisEspaceExposition;
+	}
+
+	public void setAvisEspaceExposition(List<Avis> avisEspaceExposition) {
+		this.avisEspaceExposition = avisEspaceExposition;
+	}
+
+	public List<Reclamation> getReclamationOeuvre() {
+		return reclamationOeuvre;
+	}
+
+	public void setReclamationOeuvre(List<Reclamation> reclamationOeuvre) {
+		this.reclamationOeuvre = reclamationOeuvre;
+	}
+
+	public List<Reclamation> getReclamationEspaceExposition() {
+		return reclamationEspaceExposition;
+	}
+
+	public void setReclamationEspaceExposition(List<Reclamation> reclamationEspaceExposition) {
+		this.reclamationEspaceExposition = reclamationEspaceExposition;
+	}
+
 }

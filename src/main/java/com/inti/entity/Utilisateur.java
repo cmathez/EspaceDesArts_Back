@@ -48,16 +48,17 @@ public class Utilisateur implements Serializable{
 	private Set<Role> roles = new HashSet<Role>();
 	
 	// Association avec Message
-	
 	@JsonBackReference
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
 	private List<Message> messages;
 	
 	
 	// Association avec ReservationEspace
+	@JsonBackReference
 	@OneToMany(mappedBy = "proprio", cascade = CascadeType.REMOVE)
 	private List<ReservationEspace> detenteurEspaces;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "artiste", cascade = CascadeType.REMOVE)
 	private List<ReservationEspace> reservationEspaces;
 	

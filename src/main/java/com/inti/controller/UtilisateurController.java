@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,12 +56,27 @@ public class UtilisateurController {
 	}
 
 
-	 
 	@RequestMapping(value = "/utilisateur", method = RequestMethod.PUT)
 	public Utilisateur updateUtilisateur(@RequestBody Utilisateur utilisateur) {
 		return serviceUtilisateur.updateUtilisateur(utilisateur);
 	}
 
+	
+	@PutMapping("/utilisateur/{idUtilisateur}")
+	public Utilisateur updateUtilisateur(@PathVariable("id") Long idUtilisateur, @RequestBody Utilisateur utilisateur) {
+		Utilisateur currentUser = serviceUtilisateur.findUtilisateurById(idUtilisateur);
+		
+		currentUser.setNom(utilisateur.getNom());
+		currentUser.setPrenom(utilisateur.getPrenom());
+		currentUser.setUsername(utilisateur.getUsername());
+		currentUser.setPassword(utilisateur.getPassword());
+		currentUser.setMail(utilisateur.getMail());
+		currentUser.setDateInscription(utilisateur.getDateInscription());
+		currentUser.setDateNaissance(utilisateur.getDateNaissance());
+		
+		return serviceUtilisateur.saveUtilisateur(currentUser);
+	
+	}
 	
 	@GetMapping("/utilisateur")
 	public List<Utilisateur> findAllUtilisateur() {

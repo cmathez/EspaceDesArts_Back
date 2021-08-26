@@ -20,6 +20,7 @@ public class Evenement {
 	private Date dateFin;
 	private String description;
 
+	//association avec reservation espace
 	@ManyToOne
 	@JoinColumn(name = "idReservationEspace", referencedColumnName = "idReservationEspace")
 	private ReservationEspace reservationEspace;
