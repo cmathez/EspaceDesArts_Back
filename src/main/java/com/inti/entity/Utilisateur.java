@@ -43,11 +43,11 @@ public class Utilisateur implements Serializable{
 	private Set<Role> roles = new HashSet<Role>();
 	
 	// Association avec Message
-	/*
+	
 	@OneToMany
 	@JoinColumn(name = "idUtilisateur", referencedColumnName = "idUtilisateur")
 	private Message message; // mettre getter et setter
-	*/
+	
 
 	
 	private boolean enabled = true;
@@ -178,6 +178,24 @@ public class Utilisateur implements Serializable{
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	
+	
+	public Message getMessage() {
+		return message;
+	}
+
+	public void setMessage(Message message) {
+		this.message = message;
+	}
+
+	public List<ReservationEspace> getReservationEspaces() {
+		return reservationEspaces;
+	}
+
+	public void setReservationEspaces(List<ReservationEspace> reservationEspaces) {
+		this.reservationEspaces = reservationEspaces;
 	}
 
 	@Override
