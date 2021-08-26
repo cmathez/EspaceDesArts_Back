@@ -11,9 +11,8 @@ import javax.persistence.Id;
 public class Role implements Serializable {
 
 	// Attributs 
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idRole;
 	private String libelle;
 	

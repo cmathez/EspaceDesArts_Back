@@ -18,6 +18,7 @@ public class Oeuvre {
 	private Date dateRealisation;
 	private String description;
 	private double prix;
+	private byte[] photoProfil;
 	
 	@ManyToOne
 	@JoinColumn(name="idEspaceExposition")
@@ -83,7 +84,12 @@ public class Oeuvre {
 	public void setEspaceExposition(EspaceExposition espaceExposition) {
 		this.espaceExposition = espaceExposition;
 	}
-	
-	
-	
+
+	public byte[] getPhotoProfil() {
+		return photoProfil;
+	}
+
+	public void setPhotoProfil(byte[] photoProfil) {
+		this.photoProfil = photoProfil;
+	}	
 }

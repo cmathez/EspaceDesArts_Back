@@ -28,9 +28,14 @@ public class ReservationEspace {
 	private EspaceExposition espaceExposition;
 
 	// Association avec Utilisateur
+	
 	@ManyToOne
-	@JoinColumn(name = "idUtilisateur", referencedColumnName = "idUtilisateur")
-	private Utilisateur utilisateur;
+	@JoinColumn(name = "idProprio", referencedColumnName = "idUtilisateur")
+	private Utilisateur proprio;
+	
+	@ManyToOne
+	@JoinColumn(name = "idArtiste", referencedColumnName = "idUtilisateur")
+	private Utilisateur artiste;
 	
 	
 	public ReservationEspace() {
