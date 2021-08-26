@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -16,6 +17,8 @@ public class EspaceExposition {
 	private String nomSalle;
 	private double superficie;
 	private String adresse;
+	@Lob
+	private byte[] imageEspace;
 	
 	@OneToMany(mappedBy="espaceExposition")
 	private List<Oeuvre> oeuvres;
@@ -81,6 +84,14 @@ public class EspaceExposition {
 
 	public void setReservationEspaces(List<ReservationEspace> reservationEspaces) {
 		this.reservationEspaces = reservationEspaces;
+	}
+
+	public byte[] getImageEspace() {
+		return imageEspace;
+	}
+
+	public void setImageEspace(byte[] imageEspace) {
+		this.imageEspace = imageEspace;
 	}
 	
 	

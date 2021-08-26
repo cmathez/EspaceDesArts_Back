@@ -35,7 +35,7 @@ public class OeuvreController {
 			
 			oeuvre.setNomOeuvre(nomOeuvre);
 			oeuvre.setDescription(description);
-			oeuvre.setPhotoProfil(file.getBytes());
+			oeuvre.setImageOeuvre(file.getBytes());
 			oeuvreService.saveOeuvre(oeuvre);
 			return "Alors oui";
 		} catch(Exception e) {

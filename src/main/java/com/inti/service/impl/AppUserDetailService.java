@@ -1,4 +1,4 @@
-package com.inti.service.impl;
+/*package com.inti.service.impl;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -36,5 +36,4 @@ public class AppUserDetailService implements UserDetailsService {
 		
 		return utilisateurDetail;
 	}
-
-}
+}*/

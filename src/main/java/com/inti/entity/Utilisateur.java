@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Lob;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -34,7 +35,8 @@ public class Utilisateur implements Serializable{
 	private String mail;
 	private Date dateInscription;
 	private Date dateNaissance;
-	//private byte[] photoProfil;
+	@Lob
+	private byte[] photoProfil;
 	
 	
 	// Association avec role
@@ -199,6 +201,22 @@ public class Utilisateur implements Serializable{
 
 	public void setReservationEspaces(List<ReservationEspace> reservationEspaces) {
 		this.reservationEspaces = reservationEspaces;
+	}
+	
+	public byte[] getPhotoProfil() {
+		return photoProfil;
+	}
+
+	public void setPhotoProfil(byte[] photoProfil) {
+		this.photoProfil = photoProfil;
+	}
+
+	public List<ReservationEspace> getDetenteurEspaces() {
+		return detenteurEspaces;
+	}
+
+	public void setDetenteurEspaces(List<ReservationEspace> detenteurEspaces) {
+		this.detenteurEspaces = detenteurEspaces;
 	}
 
 	@Override

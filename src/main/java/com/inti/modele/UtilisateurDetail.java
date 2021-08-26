@@ -1,4 +1,4 @@
-package com.inti.modele;
+/*package com.inti.modele;
 
 import java.util.Collection;
 import java.util.Set;
@@ -13,7 +13,7 @@ public class UtilisateurDetail implements UserDetails{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	/*private static final long serialVersionUID = 1L;
 
 	private Utilisateur utilisateur;
 	Set<GrantedAuthority> authorities = null;
@@ -69,4 +69,4 @@ public class UtilisateurDetail implements UserDetails{
 		return true;
 	}
 
-}
+}*/

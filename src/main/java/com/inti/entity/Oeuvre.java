@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -18,7 +19,8 @@ public class Oeuvre {
 	private Date dateRealisation;
 	private String description;
 	private double prix;
-	private byte[] photoProfil;
+	@Lob
+	private byte[] imageOeuvre;
 	
 	@ManyToOne
 	@JoinColumn(name="idEspaceExposition")
@@ -85,11 +87,11 @@ public class Oeuvre {
 		this.espaceExposition = espaceExposition;
 	}
 
-	public byte[] getPhotoProfil() {
-		return photoProfil;
+	public byte[] getImageOeuvre() {
+		return imageOeuvre;
 	}
 
-	public void setPhotoProfil(byte[] photoProfil) {
-		this.photoProfil = photoProfil;
-	}	
+	public void setImageOeuvre(byte[] imageOeuvre) {
+		this.imageOeuvre = imageOeuvre;
+	}
 }

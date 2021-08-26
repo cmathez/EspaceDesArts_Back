@@ -12,7 +12,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class ProjetEspaceDesArtsBackApplication {
@@ -21,10 +21,10 @@ public class ProjetEspaceDesArtsBackApplication {
 		SpringApplication.run(ProjetEspaceDesArtsBackApplication.class, args);
 	}
 	
-	@Bean
+	/*@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
+	}*/
 
 	@Bean
     public FilterRegistrationBean simpleCorsFilter() {

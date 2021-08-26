@@ -1,4 +1,4 @@
-package com.inti.controller;
+/*package com.inti.controller;
 
 import java.security.Principal;
 
@@ -19,4 +19,4 @@ import com.inti.service.interfaces.IUtilisateurService;
 		public Utilisateur login(Principal principal) {
 			return serviceUtilisateur.findByUsername(principal.getName());
 		}
-}
+}*/
