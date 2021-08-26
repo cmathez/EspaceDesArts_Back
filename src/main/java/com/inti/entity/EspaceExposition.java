@@ -21,9 +21,13 @@ public class EspaceExposition implements Serializable{
 	private double superficie;
 	private String adresse;
 	
+	//association avec oeuvre
+	@JsonBackReference
 	@OneToMany(mappedBy="espaceExposition")
 	private List<Oeuvre> oeuvres;
 	
+	//association reservation espaces
+	@JsonBackReference
 	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.REMOVE)
 	private List<ReservationEspace> reservationEspaces;
 	
@@ -91,6 +95,14 @@ public class EspaceExposition implements Serializable{
 
 	public void setReservationEspaces(List<ReservationEspace> reservationEspaces) {
 		this.reservationEspaces = reservationEspaces;
+	}
+
+	public List<Evaluation> getEvaluations() {
+		return evaluations;
+	}
+
+	public void setEvaluations(List<Evaluation> evaluations) {
+		this.evaluations = evaluations;
 	}
 	
 	

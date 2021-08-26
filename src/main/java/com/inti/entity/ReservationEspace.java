@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class ReservationEspace implements Serializable {
 
@@ -21,9 +23,12 @@ public class ReservationEspace implements Serializable {
 	private Date dateDebut;
 	private Date dateFin;
 
+	//association avec evenement
+	@JsonBackReference
 	@OneToMany(mappedBy = "reservationEspace")
 	private List<Evenement> evenements;
 
+	//association avec espace exposition
 	@ManyToOne
 	@JoinColumn(name = "idEspaceExposition", referencedColumnName = "idEspaceExposition")
 	private EspaceExposition espaceExposition;

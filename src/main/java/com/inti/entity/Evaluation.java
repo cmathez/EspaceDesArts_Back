@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 public class Evaluation extends Message {
 	private int note;
 
+	//association avec espace exposition
 	@ManyToOne
 	@JoinColumn(name = "idEspaceExposition", referencedColumnName = "idEspaceExposition")
 	private EspaceExposition espaceExposition;

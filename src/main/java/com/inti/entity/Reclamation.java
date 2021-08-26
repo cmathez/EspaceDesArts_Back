@@ -13,9 +13,18 @@ public class Reclamation extends Message {
 	private String motif;
 
 	//association avec oeuvre
+//	@ManyToOne
+//	@JoinColumn(name = "idOeuvre", referencedColumnName = "idOeuvre")
+//	private Oeuvre oeuvre;
+	
 	@ManyToOne
 	@JoinColumn(name = "idOeuvre", referencedColumnName = "idOeuvre")
 	private Oeuvre oeuvre;
+	
+	@ManyToOne
+	@JoinColumn(name = "idEspaceExposition", referencedColumnName = "idOeuvre")
+	private Oeuvre espaceExposition;
+	
 	
 	public Reclamation() {
 		super();
@@ -43,6 +52,17 @@ public class Reclamation extends Message {
 	public void setOeuvre(Oeuvre oeuvre) {
 		this.oeuvre = oeuvre;
 	}
+
+	public Oeuvre getEspaceExposition() {
+		return espaceExposition;
+	}
+
+	public void setEspaceExposition(Oeuvre espaceExposition) {
+		this.espaceExposition = espaceExposition;
+	}
+
+	
+	
 	
 	
 }

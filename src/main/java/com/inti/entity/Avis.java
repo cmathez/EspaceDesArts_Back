@@ -13,17 +13,19 @@ public class Avis extends Message {
 	private String titre;
 
 	//association avec oeuvre
+//	@ManyToOne
+//	@JoinColumn(name = "idOeuvre", referencedColumnName = "idOeuvre")
+//	private Oeuvre oeuvre;
+	
+	//association avec oeuvre
 	@ManyToOne
 	@JoinColumn(name = "idOeuvre", referencedColumnName = "idOeuvre")
 	private Oeuvre oeuvre;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "idOeuvre", referencedColumnName = "idOeuvre")
-//	private Oeuvre oeuvre;
-//	
-//	@ManyToOne
-//	@JoinColumn(name = "idEspaceExposition", referencedColumnName = "idOeuvre")
-//	private Oeuvre espaceExposition;
+	//association avec espaceExposition
+	@ManyToOne
+	@JoinColumn(name = "idEspaceExposition", referencedColumnName = "idOeuvre")
+	private Oeuvre espaceExposition;
 	
 	
 
@@ -55,6 +57,16 @@ public class Avis extends Message {
 	public void setOeuvre(Oeuvre oeuvre) {
 		this.oeuvre = oeuvre;
 	}
+
+	public Oeuvre getEspaceExposition() {
+		return espaceExposition;
+	}
+
+	public void setEspaceExposition(Oeuvre espaceExposition) {
+		this.espaceExposition = espaceExposition;
+	}
+
+
 	
 	
 	

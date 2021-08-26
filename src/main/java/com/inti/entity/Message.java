@@ -22,6 +22,7 @@ public class Message {
 	private String commentaire;
 	private Date date;
 	
+	//association avec utilisateur
 	@ManyToOne
 	@JoinColumn(name="idUtilisateur", referencedColumnName = "idUtilisateur")
 	private Utilisateur utilisateur;

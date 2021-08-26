@@ -25,30 +25,40 @@ public class Oeuvre {
 	private double prix;
 	private byte[] photoProfil;
 	
+	
+	//association avec espace exposition
 	@ManyToOne
 	@JoinColumn(name="idEspaceExposition")
 	private EspaceExposition espaceExposition;
 	
 	//association avec avis
-	@JsonBackReference
-	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
-	private List<Avis> avis;
-	
-	
 //	@JsonBackReference
 //	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
-//	private List<Avis> avisOeuvre;
-//	
-//	@JsonBackReference
-//	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.REMOVE)
-//	private List<Avis> avisEspaceExposition;
+//	private List<Avis> avis;
+	
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
+	private List<Avis> avisOeuvre;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.REMOVE)
+	private List<Avis> avisEspaceExposition;
 	
 
 	
 	//association avec reclamation
+//	@JsonBackReference
+//	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
+//	private List<Reclamation> reclamations;
+	
 	@JsonBackReference
 	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
-	private List<Reclamation> reclamations;
+	private List<Reclamation> reclamationOeuvre;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.REMOVE)
+	private List<Reclamation> reclamationEspaceExposition;
 	
 	public Oeuvre() {
 		super();
@@ -119,21 +129,44 @@ public class Oeuvre {
 		this.photoProfil = photoProfil;
 	}
 
-	public List<Avis> getAvis() {
-		return avis;
+	public List<Avis> getAvisOeuvre() {
+		return avisOeuvre;
 	}
 
-	public void setAvis(List<Avis> avis) {
-		this.avis = avis;
+	public void setAvisOeuvre(List<Avis> avisOeuvre) {
+		this.avisOeuvre = avisOeuvre;
 	}
 
-	public List<Reclamation> getReclamations() {
-		return reclamations;
+	public List<Avis> getAvisEspaceExposition() {
+		return avisEspaceExposition;
 	}
 
-	public void setReclamations(List<Reclamation> reclamations) {
-		this.reclamations = reclamations;
-	}	
+	public void setAvisEspaceExposition(List<Avis> avisEspaceExposition) {
+		this.avisEspaceExposition = avisEspaceExposition;
+	}
+
+	public List<Reclamation> getReclamationOeuvre() {
+		return reclamationOeuvre;
+	}
+
+	public void setReclamationOeuvre(List<Reclamation> reclamationOeuvre) {
+		this.reclamationOeuvre = reclamationOeuvre;
+	}
+
+	public List<Reclamation> getReclamationEspaceExposition() {
+		return reclamationEspaceExposition;
+	}
+
+	public void setReclamationEspaceExposition(List<Reclamation> reclamationEspaceExposition) {
+		this.reclamationEspaceExposition = reclamationEspaceExposition;
+	}
+
+
+
+	
+
+
+	
 	
 	
 }
