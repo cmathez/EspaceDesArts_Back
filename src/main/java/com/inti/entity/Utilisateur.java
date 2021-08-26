@@ -46,11 +46,6 @@ public class Utilisateur implements Serializable{
 	private Set<Role> roles = new HashSet<Role>();
 	
 	// Association avec Message
-
-	
-
-
-	
 	@JsonBackReference
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
 	private List<Message> messages;
@@ -210,6 +205,14 @@ public class Utilisateur implements Serializable{
 
 
 
+
+	public List<ReservationEspace> getDetenteurEspaces() {
+		return detenteurEspaces;
+	}
+
+	public void setDetenteurEspaces(List<ReservationEspace> detenteurEspaces) {
+		this.detenteurEspaces = detenteurEspaces;
+	}
 
 	@Override
 	public String toString() {

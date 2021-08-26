@@ -74,4 +74,6 @@ public class Message {
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
+	
+	
 }

@@ -4,21 +4,27 @@ import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue(value="EVAL")
 public class Evaluation extends Message {
 	private int note;
 
+	@ManyToOne
+	@JoinColumn(name = "idEspaceExposition", referencedColumnName = "idEspaceExposition")
+	private EspaceExposition espaceExposition;
+	
+	
 	public Evaluation() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Evaluation(Long idMessage, String commentaire, Date date, int note) {
 		super(idMessage, commentaire, date);
 		this.note = note;
-		// TODO Auto-generated constructor stub
 	}
 
 	public int getNote() {
@@ -27,6 +33,14 @@ public class Evaluation extends Message {
 
 	public void setNote(int note) {
 		this.note = note;
+	}
+
+	public EspaceExposition getEspaceExposition() {
+		return espaceExposition;
+	}
+
+	public void setEspaceExposition(EspaceExposition espaceExposition) {
+		this.espaceExposition = espaceExposition;
 	}
 	
 	
