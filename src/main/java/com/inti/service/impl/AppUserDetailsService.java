@@ -36,5 +36,4 @@ public class AppUserDetailsService implements UserDetailsService {
 		
 		return utilisateurDetail;
 	}
-
 }

@@ -1,9 +1,12 @@
 package com.inti.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,8 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
-public class ReservationEspace {
+public class ReservationEspace implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,20 +25,22 @@ public class ReservationEspace {
 	private Date dateDebut;
 	private Date dateFin;
 
-	@OneToMany(mappedBy = "reservationEspace")
+	//association avec evenement
+	//@JsonBackReference
+	@OneToMany(mappedBy = "reservationEspace",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Evenement> evenements;
 
-	@ManyToOne
+	//association avec espace exposition
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idEspaceExposition", referencedColumnName = "idEspaceExposition")
 	private EspaceExposition espaceExposition;
 
 	// Association avec Utilisateur
-	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idProprio", referencedColumnName = "idUtilisateur")
 	private Utilisateur proprio;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idArtiste", referencedColumnName = "idUtilisateur")
 	private Utilisateur artiste;
 	
@@ -93,6 +100,24 @@ public class ReservationEspace {
 
 	public void setEspaceExposition(EspaceExposition espaceExposition) {
 		this.espaceExposition = espaceExposition;
+	}
+	
+	
+
+	public Utilisateur getProprio() {
+		return proprio;
+	}
+
+	public void setProprio(Utilisateur proprio) {
+		this.proprio = proprio;
+	}
+
+	public Utilisateur getArtiste() {
+		return artiste;
+	}
+
+	public void setArtiste(Utilisateur artiste) {
+		this.artiste = artiste;
 	}
 
 	@Override

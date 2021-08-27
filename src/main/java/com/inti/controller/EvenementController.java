@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,19 @@ public class EvenementController {
 	@PostMapping("/evenement")
 	public Evenement saveEvenement(@RequestBody Evenement evenement) {
 		return evenementService.saveEvenement(evenement);
+	}
+	
+	@PutMapping("/evenement/{idEvenement}")
+	public Evenement updateEvenement(@PathVariable("id") Long idEvenement, @RequestBody Evenement evenement) {
+		
+		Evenement currentEvenement = evenementService.findOne(idEvenement);
+		
+		currentEvenement.setNomEvenement(evenement.getNomEvenement());
+		currentEvenement.setDateDebut(evenement.getDateDebut());
+		currentEvenement.setDateFin(evenement.getDateFin());
+		currentEvenement.setDescription(evenement.getDescription());
+		
+		return evenementService.saveEvenement(currentEvenement);
 	}
 
 	@GetMapping("/evenement")

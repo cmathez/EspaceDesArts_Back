@@ -16,6 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Lob;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -32,9 +35,12 @@ public class Utilisateur implements Serializable{
 	private String nom;
 	private String prenom;
 	private String mail;
+	@Temporal(TemporalType.DATE)
 	private Date dateInscription;
+	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
-	//private byte[] photoProfil;
+	@Lob
+	private byte[] photoProfil;
 	
 	
 	// Association avec role
@@ -46,17 +52,18 @@ public class Utilisateur implements Serializable{
 	private Set<Role> roles = new HashSet<Role>();
 	
 	// Association avec Message
-	
-	@JsonBackReference
-	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.REMOVE)
+	//@JsonBackReference
+	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Message> messages;
 	
 	
 	// Association avec ReservationEspace
-	@OneToMany(mappedBy = "proprio", cascade = CascadeType.REMOVE)
+	//@JsonBackReference
+	@OneToMany(mappedBy = "proprio", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<ReservationEspace> detenteurEspaces;
 	
-	@OneToMany(mappedBy = "artiste", cascade = CascadeType.REMOVE)
+	//@JsonBackReference
+	@OneToMany(mappedBy = "artiste", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<ReservationEspace> reservationEspaces;
 	
 	private boolean enabled = true;
@@ -66,43 +73,13 @@ public class Utilisateur implements Serializable{
 	public Utilisateur() {
 		super();
 	}
-	
-		// Avec params
-	public Utilisateur(Long idUtilisateur, String username, String password, String nom, String prenom, String mail,
-			Date dateInscription, Date dateNaissance) {
-		super();
-		this.idUtilisateur = idUtilisateur;
-		this.username = username;
-		this.password = password;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.dateInscription = dateInscription;
-		this.dateNaissance = dateNaissance;
-	}
-	
-		// sans id 
-	public Utilisateur(String username, String password, String nom, String prenom, String mail, Date dateInscription,
-			Date dateNaissance) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.dateInscription = dateInscription;
-		this.dateNaissance = dateNaissance;
-	}
-	
-		// username + password
+
 	public Utilisateur(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
 	}
 
-	
-	// Getters & setters
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
 	}
@@ -166,7 +143,14 @@ public class Utilisateur implements Serializable{
 	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
-	
+
+	public byte[] getPhotoProfil() {
+		return photoProfil;
+	}
+
+	public void setPhotoProfil(byte[] photoProfil) {
+		this.photoProfil = photoProfil;
+	}
 
 	public Set<Role> getRoles() {
 		return roles;
@@ -176,21 +160,20 @@ public class Utilisateur implements Serializable{
 		this.roles = roles;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-	
-
 	public List<Message> getMessages() {
 		return messages;
 	}
 
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
+	}
+
+	public List<ReservationEspace> getDetenteurEspaces() {
+		return detenteurEspaces;
+	}
+
+	public void setDetenteurEspaces(List<ReservationEspace> detenteurEspaces) {
+		this.detenteurEspaces = detenteurEspaces;
 	}
 
 	public List<ReservationEspace> getReservationEspaces() {
@@ -201,20 +184,14 @@ public class Utilisateur implements Serializable{
 		this.reservationEspaces = reservationEspaces;
 	}
 
-	@Override
-	public String toString() {
-		return "Utilisateur [idUtilisateur=" + idUtilisateur + ", username=" + username + ", password=" + password
-				+ ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", dateInscription=" + dateInscription
-				+ ", dateNaissance=" + dateNaissance + "]";
+	public boolean isEnabled() {
+		return enabled;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	
 
 }

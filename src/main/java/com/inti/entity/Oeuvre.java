@@ -1,13 +1,20 @@
 package com.inti.entity;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Oeuvre {
@@ -18,11 +25,43 @@ public class Oeuvre {
 	private Date dateRealisation;
 	private String description;
 	private double prix;
-	private byte[] photoProfil;
+	@Lob
+	private byte[] imageOeuvre;
 	
+	
+	//association avec espace exposition
 	@ManyToOne
 	@JoinColumn(name="idEspaceExposition")
 	private EspaceExposition espaceExposition;
+	
+	//association avec avis
+//	@JsonBackReference
+//	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
+//	private List<Avis> avis;
+	
+	
+	//@JsonBackReference
+	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Avis> avisOeuvre;
+	
+	//@JsonBackReference
+	@OneToMany(mappedBy = "espaceExposition",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	private List<Avis> avisEspaceExposition;
+	
+
+	
+	//association avec reclamation
+//	@JsonBackReference
+//	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
+//	private List<Reclamation> reclamations;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
+	private List<Reclamation> reclamationOeuvre;
+	
+	@JsonBackReference
+	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.REMOVE)
+	private List<Reclamation> reclamationEspaceExposition;
 	
 	public Oeuvre() {
 		super();
@@ -85,11 +124,44 @@ public class Oeuvre {
 		this.espaceExposition = espaceExposition;
 	}
 
-	public byte[] getPhotoProfil() {
-		return photoProfil;
+	public byte[] getImageOeuvre() {
+		return imageOeuvre;
 	}
 
-	public void setPhotoProfil(byte[] photoProfil) {
-		this.photoProfil = photoProfil;
-	}	
+	public void setImageOeuvre(byte[] imageOeuvre) {
+		this.imageOeuvre = imageOeuvre;
+	}
+
+	public List<Avis> getAvisOeuvre() {
+		return avisOeuvre;
+	}
+
+	public void setAvisOeuvre(List<Avis> avisOeuvre) {
+		this.avisOeuvre = avisOeuvre;
+	}
+
+	public List<Avis> getAvisEspaceExposition() {
+		return avisEspaceExposition;
+	}
+
+	public void setAvisEspaceExposition(List<Avis> avisEspaceExposition) {
+		this.avisEspaceExposition = avisEspaceExposition;
+	}
+
+	public List<Reclamation> getReclamationOeuvre() {
+		return reclamationOeuvre;
+	}
+
+	public void setReclamationOeuvre(List<Reclamation> reclamationOeuvre) {
+		this.reclamationOeuvre = reclamationOeuvre;
+	}
+
+	public List<Reclamation> getReclamationEspaceExposition() {
+		return reclamationEspaceExposition;
+	}
+
+	public void setReclamationEspaceExposition(List<Reclamation> reclamationEspaceExposition) {
+		this.reclamationEspaceExposition = reclamationEspaceExposition;
+	}
+
 }

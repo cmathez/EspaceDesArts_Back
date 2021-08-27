@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception{
 		http
 			.authorizeRequests()
-				.anyRequest().authenticated() // toutes les requetes doivent passées par la procédure de connexion
+				.anyRequest().permitAll() // toutes les requetes doivent passées par la procédure de connexion
 			.and()
 			.formLogin()
 				.permitAll() // il faut faire la connexion avant d'ouvrir la ressource
@@ -41,4 +41,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.csrf().disable(); // désactivé le cross-site request forgery
 	}
 }
-
