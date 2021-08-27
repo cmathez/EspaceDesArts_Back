@@ -31,13 +31,22 @@ public class UtilisateurController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	@RequestMapping(value="/utilisateur",method = RequestMethod.POST)
-	public String saveUtilisateur(@RequestParam(required = true,name="nomU") String nom) {// @RequestBody Utilisateur
+	public String saveUtilisateur(@RequestParam String nom,
+			@RequestParam String prenom,
+			@RequestParam MultipartFile file,
+			@RequestParam String username,
+			@RequestParam String password) {// @RequestBody Utilisateur
 																					// utilisateur) {
 
 		try {
 			Utilisateur user = new Utilisateur();
 			user.setNom(nom);
-
+			
+			user.setPrenom(prenom);
+			user.setPassword(passwordEncoder.encode(password));
+			user.setUsername(username);
+			user.setPhotoProfil(file.getBytes());
+			user.setDateInscription(new Date());
 			serviceUtilisateur.saveUtilisateur(user);
 			return "Tout va bin";
 		} catch (Exception e) {
