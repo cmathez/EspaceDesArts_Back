@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -18,12 +19,12 @@ public class Avis extends Message {
 //	private Oeuvre oeuvre;
 	
 	//association avec oeuvre
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idOeuvre", referencedColumnName = "idOeuvre")
 	private Oeuvre oeuvre;
 	
 	//association avec espaceExposition
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idEspaceExposition", referencedColumnName = "idOeuvre")
 	private Oeuvre espaceExposition;
 	

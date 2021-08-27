@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,12 +40,12 @@ public class Oeuvre {
 //	private List<Avis> avis;
 	
 	
-	@JsonBackReference
-	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.REMOVE)
+	//@JsonBackReference
+	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Avis> avisOeuvre;
 	
-	@JsonBackReference
-	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.REMOVE)
+	//@JsonBackReference
+	@OneToMany(mappedBy = "espaceExposition",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Avis> avisEspaceExposition;
 	
 

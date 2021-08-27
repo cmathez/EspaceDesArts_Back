@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -14,7 +15,7 @@ public class Evaluation extends Message {
 	private int note;
 
 	//association avec espace exposition
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idEspaceExposition", referencedColumnName = "idEspaceExposition")
 	private EspaceExposition espaceExposition;
 	

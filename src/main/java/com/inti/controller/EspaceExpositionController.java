@@ -20,21 +20,21 @@ import com.inti.service.interfaces.IEspaceExpositionService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/gestionEspaceExposition")
+@RequestMapping(value = "/gestionEspaceExposition")
 public class EspaceExpositionController {
 
 	@Autowired
 	IEspaceExpositionService espaceExpositionService;
 
-	@RequestMapping(value="/espaceExposition", method=RequestMethod.POST)
-	public String saveEspaceExposition(@RequestParam("nomEspace") String nomEspace, @RequestParam("adresse") String adresse, @RequestParam("file") MultipartFile file) {//@RequestBody EspaceExposition espaceExposition) {
-		System.out.println("Oui zllô bonjojr");
-	
+	@PostMapping("/espaceExposition")
+	public String saveEspaceExposition(@RequestParam(required = false,value="nomEspace") String nomEspace,@RequestParam(required = false,value="superficie") double superficie, @RequestParam(required = false,value="adresse") String adresse, @RequestParam(required = false,value="file") MultipartFile file) {//@RequestBody EspaceExposition espaceExposition) {
+		
 		try {
 			EspaceExposition espaceExposition = new EspaceExposition();
 			
 			espaceExposition.setNomSalle(nomEspace);
 			espaceExposition.setAdresse(adresse);
+			espaceExposition.setSuperficie(superficie);
 			espaceExposition.setImageEspace(file.getBytes());
 			espaceExpositionService.saveEspaceExposition(espaceExposition);
 			return "Alors oui";

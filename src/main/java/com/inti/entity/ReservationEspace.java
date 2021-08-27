@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,21 +26,21 @@ public class ReservationEspace implements Serializable {
 	private Date dateFin;
 
 	//association avec evenement
-	@JsonBackReference
-	@OneToMany(mappedBy = "reservationEspace")
+	//@JsonBackReference
+	@OneToMany(mappedBy = "reservationEspace",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Evenement> evenements;
 
 	//association avec espace exposition
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idEspaceExposition", referencedColumnName = "idEspaceExposition")
 	private EspaceExposition espaceExposition;
 
 	// Association avec Utilisateur
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idProprio", referencedColumnName = "idUtilisateur")
 	private Utilisateur proprio;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idArtiste", referencedColumnName = "idUtilisateur")
 	private Utilisateur artiste;
 	

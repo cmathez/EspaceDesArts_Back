@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,18 +26,18 @@ public class EspaceExposition implements Serializable{
 	private byte[] imageEspace;
 	
 	//association avec oeuvre
-	@JsonBackReference
-	@OneToMany(mappedBy="espaceExposition")
+	//@JsonBackReference
+	@OneToMany(mappedBy="espaceExposition",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Oeuvre> oeuvres;
 	
 	//association reservation espaces
-	@JsonBackReference
-	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.REMOVE)
+	//@JsonBackReference
+	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<ReservationEspace> reservationEspaces;
 	
 	//association espace exposition
-	@JsonBackReference
-	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.REMOVE)
+	//@JsonBackReference
+	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Evaluation> evaluations;
 	
 	

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Message {
 	private Date date;
 	
 	//association avec utilisateur
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="idUtilisateur", referencedColumnName = "idUtilisateur")
 	private Utilisateur utilisateur;
 	

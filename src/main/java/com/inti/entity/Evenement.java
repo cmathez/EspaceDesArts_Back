@@ -3,6 +3,7 @@ package com.inti.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class Evenement {
 	private String description;
 
 	//association avec reservation espace
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idReservationEspace", referencedColumnName = "idReservationEspace")
 	private ReservationEspace reservationEspace;
 
