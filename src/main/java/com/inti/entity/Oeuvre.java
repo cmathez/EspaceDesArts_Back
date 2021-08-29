@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Oeuvre {
@@ -41,6 +42,7 @@ public class Oeuvre {
 	
 	
 	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "oeuvre", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Avis> avisOeuvre;
 	
