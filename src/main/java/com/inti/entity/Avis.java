@@ -1,5 +1,6 @@
 package com.inti.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
@@ -10,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @DiscriminatorValue(value="AVIS")
-public class Avis extends Message {
+public class Avis extends Message implements Serializable {
 	private String titre;
 
 	//association avec oeuvre

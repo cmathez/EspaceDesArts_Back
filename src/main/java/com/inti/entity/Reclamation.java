@@ -1,5 +1,6 @@
 package com.inti.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorValue;
@@ -10,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @DiscriminatorValue(value="RECL")
-public class Reclamation extends Message {
+public class Reclamation extends Message implements Serializable {
 	private String motif;
 
 	//association avec oeuvre

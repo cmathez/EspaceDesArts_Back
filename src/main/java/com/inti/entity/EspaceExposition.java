@@ -13,6 +13,7 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class EspaceExposition implements Serializable{
@@ -27,16 +28,19 @@ public class EspaceExposition implements Serializable{
 	
 	//association avec oeuvre
 	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy="espaceExposition",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Oeuvre> oeuvres;
 	
 	//association reservation espaces
 	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<ReservationEspace> reservationEspaces;
 	
 	//association espace exposition
 	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "espaceExposition", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Evaluation> evaluations;
 	

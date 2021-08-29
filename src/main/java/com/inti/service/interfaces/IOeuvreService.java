@@ -10,4 +10,5 @@ public interface IOeuvreService {
 	public List<Oeuvre> findAll();
 	public Oeuvre findOeuvreById(Long id);
 	void deleteOeuvre(Long id);
+	public List <Oeuvre> findByIdEspaceExposition(Long idEspaceExposition);
 }

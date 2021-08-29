@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ReservationEspace implements Serializable {
@@ -22,11 +23,14 @@ public class ReservationEspace implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idReservationEspace;
+	private String nom;
 	private Date dateDebut;
 	private Date dateFin;
+	private boolean accepte;
 
 	//association avec evenement
 	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "reservationEspace",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Evenement> evenements;
 
@@ -125,5 +129,23 @@ public class ReservationEspace implements Serializable {
 		return "ReservationEspace [idReservationEspace=" + idReservationEspace + ", dateDebut=" + dateDebut
 				+ ", dateFin=" + dateFin + "]";
 	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public boolean isAccepte() {
+		return accepte;
+	}
+
+	public void setAccepte(boolean accepte) {
+		this.accepte = accepte;
+	}
+	
+	
 
 }
