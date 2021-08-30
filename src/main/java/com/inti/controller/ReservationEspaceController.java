@@ -71,6 +71,11 @@ public class ReservationEspaceController {
 		return reservationEspaceService.findAll();
 	}
 	
+	@GetMapping("/expositions")
+	public List<ReservationEspace> findByAccepte(){
+		return reservationEspaceService.findByAccepte();
+	}
+	
 	@GetMapping("/reservationEspace/{idReservationEspace}")
 	public ReservationEspace findOne(@PathVariable("idReservationEspace") Long id) {
 		return reservationEspaceService.findOne(id);

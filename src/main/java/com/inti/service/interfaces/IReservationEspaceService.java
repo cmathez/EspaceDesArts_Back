@@ -14,5 +14,6 @@ public interface IReservationEspaceService {
 
 	void deleteReservationEspace(Long id);
 	
+	List<ReservationEspace> findByAccepte();
 	
 }
