@@ -36,6 +36,11 @@ public class ReservationEspaceServiceImpl implements IReservationEspaceService{
 	public void deleteReservationEspace(Long id) {
 		reservationEspaceRepository.deleteById(id);
 	}
+
+	@Override
+	public List<ReservationEspace> findByAccepte() {
+		return reservationEspaceRepository.findByAccepte();
+	}
 	
 	
 }

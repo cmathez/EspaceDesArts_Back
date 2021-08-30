@@ -35,5 +35,10 @@ public class AvisServiceImpl implements IAvisService{
 		avisRepository.deleteById(id);
 		
 	}
+	
+	@Override
+	public List<Avis> findByIdOeuvre(Long idOeuvre) {
+		return avisRepository.findByIdOeuvre(idOeuvre);
+	}
 
 }

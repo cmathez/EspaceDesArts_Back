@@ -13,4 +13,6 @@ public interface IAvisService {
 	Avis findOne(Long id);
 
 	void deleteAvis(Long id);
+	
+	List<Avis> findByIdOeuvre(Long idOeuvre);
 }

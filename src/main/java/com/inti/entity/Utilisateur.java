@@ -21,6 +21,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Lob;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Utilisateur implements Serializable{
@@ -53,16 +54,19 @@ public class Utilisateur implements Serializable{
 	
 	// Association avec Message
 	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Message> messages;
 	
 	
 	// Association avec ReservationEspace
 	//@JsonBackReference
-	@OneToMany(mappedBy = "proprio", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<ReservationEspace> detenteurEspaces;
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "proprio", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//	private List<ReservationEspace> detenteurEspaces;
 	
 	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "artiste", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<ReservationEspace> reservationEspaces;
 	
@@ -168,13 +172,7 @@ public class Utilisateur implements Serializable{
 		this.messages = messages;
 	}
 
-	public List<ReservationEspace> getDetenteurEspaces() {
-		return detenteurEspaces;
-	}
 
-	public void setDetenteurEspaces(List<ReservationEspace> detenteurEspaces) {
-		this.detenteurEspaces = detenteurEspaces;
-	}
 
 	public List<ReservationEspace> getReservationEspaces() {
 		return reservationEspaces;
