@@ -1,7 +1,9 @@
 package com.inti.controller;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.inti.entity.Role;
 import com.inti.entity.Utilisateur;
 import com.inti.service.interfaces.IUtilisateurService;
 
@@ -35,9 +38,14 @@ public class UtilisateurController {
 			@RequestParam String prenom,
 			@RequestParam MultipartFile file,
 			@RequestParam String username,
-			@RequestParam String password) {// @RequestBody Utilisateur
+			@RequestParam String password,
+			@RequestParam String idRole) {// @RequestBody Utilisateur
 																					// utilisateur) {
-
+		Role role = new Role();
+		role.setIdRole(Long.parseLong(idRole));
+		Set<Role> roles = new HashSet<Role>();
+		roles.add(role);
+		
 		try {
 			Utilisateur user = new Utilisateur();
 			user.setNom(nom);
@@ -47,6 +55,7 @@ public class UtilisateurController {
 			user.setUsername(username);
 			user.setPhotoProfil(file.getBytes());
 			user.setDateInscription(new Date());
+			user.setRoles(roles);
 			serviceUtilisateur.saveUtilisateur(user);
 			return "Tout va bin";
 		} catch (Exception e) {
