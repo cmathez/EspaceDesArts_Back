@@ -42,7 +42,13 @@ public class OeuvreServiceImpl implements IOeuvreService {
 	@Override
 	public void deleteOeuvre(Long id) {
 		// TODO Auto-generated method stub
+		oeuvreDao.deleteAvis(id);
 		oeuvreDao.deleteById(id);
+	}
+	
+	@Override
+	public List <Oeuvre> findByIdEspaceExposition(Long idEspaceExposition) {
+		return oeuvreDao.findByIdEspaceExposition(idEspaceExposition);
 	}
 
 }

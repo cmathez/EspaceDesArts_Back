@@ -1,5 +1,6 @@
 package com.inti.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -31,14 +32,16 @@ public class UtilisateurController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	@RequestMapping(value="/utilisateur",method = RequestMethod.POST)
-	public String saveUtilisateur(@RequestParam String nom,
-			@RequestParam String prenom,
-			@RequestParam MultipartFile file,
-			@RequestParam String username,
-			@RequestParam String password) {// @RequestBody Utilisateur
-																					// utilisateur) {
+	public String saveUtilisateur(@RequestParam("nom") String nom,
+			@RequestParam("prenom") String prenom,
+			@RequestParam("file") MultipartFile file,
+			@RequestParam("username") String username,
+			@RequestParam("password") String password,
+			@RequestParam("dateNaissance") String dateNaissance) {
 
 		try {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			
 			Utilisateur user = new Utilisateur();
 			user.setNom(nom);
 			
@@ -47,6 +50,7 @@ public class UtilisateurController {
 			user.setUsername(username);
 			user.setPhotoProfil(file.getBytes());
 			user.setDateInscription(new Date());
+			user.setDateNaissance(format.parse(dateNaissance));
 			serviceUtilisateur.saveUtilisateur(user);
 			return "Tout va bin";
 		} catch (Exception e) {

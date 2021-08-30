@@ -56,6 +56,7 @@ public class Utilisateur implements Serializable{
 	//@JsonBackReference
 	@JsonIgnore
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Message> messages;
 	
 	

@@ -1,5 +1,6 @@
 package com.inti.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +29,16 @@ public class OeuvreController {
 	IOeuvreService oeuvreService;
 
 	@RequestMapping(value="/oeuvre", method=RequestMethod.POST)
-	public String saveOeuvre(@RequestParam("nomOeuvre") String nomOeuvre, @RequestParam("description") String description, @RequestParam("file") MultipartFile file) {//@RequestBody Oeuvre oeuvre) {
-		System.out.println("On est dans le controller Java");
+	public String saveOeuvre(@RequestParam("nomOeuvre") String nomOeuvre, @RequestParam("description") String description, @RequestParam("prix") String prix, @RequestParam("file") MultipartFile file) {//@RequestBody Oeuvre oeuvre) {
+		double prixD = Double.parseDouble(prix);
 	
 		try {
 			Oeuvre oeuvre = new Oeuvre();
 			
 			oeuvre.setNomOeuvre(nomOeuvre);
 			oeuvre.setDescription(description);
+			oeuvre.setPrix(prixD);
+			oeuvre.setDateRealisation(new Date());
 			oeuvre.setImageOeuvre(file.getBytes());
 			oeuvreService.saveOeuvre(oeuvre);
 			return "Alors oui";
@@ -65,6 +68,11 @@ public class OeuvreController {
 	@GetMapping("/oeuvre")
 	public List<Oeuvre> findAll() {
 		return oeuvreService.findAll();
+	}
+	
+	@GetMapping("/espaceExposition/{idEspaceExposition}")
+	public List<Oeuvre> findByIdEspaceExposition(@PathVariable("idEspaceExposition") Long idEspaceExposition) {
+		return oeuvreService.findByIdEspaceExposition(idEspaceExposition);
 	}
 
 	@GetMapping("/oeuvre/{idOeuvre}")
