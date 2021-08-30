@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.inti.entity.EspaceExposition;
 import com.inti.entity.Oeuvre;
 import com.inti.service.interfaces.IOeuvreService;
 
@@ -29,11 +30,15 @@ public class OeuvreController {
 	IOeuvreService oeuvreService;
 
 	@RequestMapping(value="/oeuvre", method=RequestMethod.POST)
-	public String saveOeuvre(@RequestParam("nomOeuvre") String nomOeuvre, @RequestParam("description") String description, @RequestParam("prix") String prix, @RequestParam("file") MultipartFile file) {//@RequestBody Oeuvre oeuvre) {
+	public String saveOeuvre(@RequestParam("idEspaceExposition") String idEspaceExposition, @RequestParam("nomOeuvre") String nomOeuvre, @RequestParam("description") String description, @RequestParam("prix") String prix, @RequestParam("file") MultipartFile file) {//@RequestBody Oeuvre oeuvre) {
 		double prixD = Double.parseDouble(prix);
 	
 		try {
 			Oeuvre oeuvre = new Oeuvre();
+			
+			EspaceExposition espaceExposition = new EspaceExposition();
+			espaceExposition.setIdEspaceExposition(Long.parseLong(idEspaceExposition));
+			oeuvre.setEspaceExposition(espaceExposition);
 			
 			oeuvre.setNomOeuvre(nomOeuvre);
 			oeuvre.setDescription(description);
