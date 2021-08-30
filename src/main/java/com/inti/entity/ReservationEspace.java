@@ -40,9 +40,9 @@ public class ReservationEspace implements Serializable {
 	private EspaceExposition espaceExposition;
 
 	// Association avec Utilisateur
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "idProprio", referencedColumnName = "idUtilisateur")
-	private Utilisateur proprio;
+//	@ManyToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name = "idProprio", referencedColumnName = "idUtilisateur")
+//	private Utilisateur proprio;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "idArtiste", referencedColumnName = "idUtilisateur")
@@ -107,14 +107,6 @@ public class ReservationEspace implements Serializable {
 	}
 	
 	
-
-	public Utilisateur getProprio() {
-		return proprio;
-	}
-
-	public void setProprio(Utilisateur proprio) {
-		this.proprio = proprio;
-	}
 
 	public Utilisateur getArtiste() {
 		return artiste;

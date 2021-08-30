@@ -28,8 +28,8 @@ public class EspaceExpositionController {
 	IEspaceExpositionService espaceExpositionService;
 
 	@PostMapping("/espaceExposition")
-	public String saveEspaceExposition(@RequestParam(required = false,value="nomSalle") String nomSalle,@RequestParam(required = false,value="superficie") double superficie, @RequestParam(required = false,value="adresse") String adresse, @RequestParam(required = false,value="file") MultipartFile file) {//@RequestBody EspaceExposition espaceExposition) {
-		
+	public String saveEspaceExposition(@RequestParam(required = false,value="idProprio") String idProprio, @RequestParam(required = false,value="nomSalle") String nomSalle,@RequestParam(required = false,value="superficie") double superficie, @RequestParam(required = false,value="adresse") String adresse, @RequestParam(required = false,value="file") MultipartFile file) {//@RequestBody EspaceExposition espaceExposition) {
+		 
 		try {
 			EspaceExposition espaceExposition = new EspaceExposition();
 			
@@ -37,7 +37,9 @@ public class EspaceExpositionController {
 			espaceExposition.setAdresse(adresse);
 			espaceExposition.setSuperficie(superficie);
 			espaceExposition.setImageEspace(file.getBytes());
+			espaceExposition.setIdProprio(idProprio);
 			espaceExpositionService.saveEspaceExposition(espaceExposition);
+			
 			return "Alors oui";
 		} catch(Exception e) {
 			e.printStackTrace();

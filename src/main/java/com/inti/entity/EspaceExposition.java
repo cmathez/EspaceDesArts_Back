@@ -26,6 +26,8 @@ public class EspaceExposition implements Serializable{
 	@Lob
 	private byte[] imageEspace;
 	
+	private String idProprio;
+	
 	//association avec oeuvre
 	//@JsonBackReference
 	@JsonIgnore
@@ -120,6 +122,16 @@ public class EspaceExposition implements Serializable{
 	public void setEvaluations(List<Evaluation> evaluations) {
 		this.evaluations = evaluations;
 	}
+
+	public String getIdProprio() {
+		return idProprio;
+	}
+
+	public void setIdProprio(String idProprio) {
+		this.idProprio = idProprio;
+	}
+
+	
 	
 	
 	

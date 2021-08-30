@@ -56,15 +56,14 @@ public class Utilisateur implements Serializable{
 	//@JsonBackReference
 	@JsonIgnore
 	@OneToMany(mappedBy="utilisateur", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JsonIgnore
 	private List<Message> messages;
 	
 	
 	// Association avec ReservationEspace
 	//@JsonBackReference
-	@JsonIgnore
-	@OneToMany(mappedBy = "proprio", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<ReservationEspace> detenteurEspaces;
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "proprio", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//	private List<ReservationEspace> detenteurEspaces;
 	
 	//@JsonBackReference
 	@JsonIgnore
@@ -173,13 +172,7 @@ public class Utilisateur implements Serializable{
 		this.messages = messages;
 	}
 
-	public List<ReservationEspace> getDetenteurEspaces() {
-		return detenteurEspaces;
-	}
 
-	public void setDetenteurEspaces(List<ReservationEspace> detenteurEspaces) {
-		this.detenteurEspaces = detenteurEspaces;
-	}
 
 	public List<ReservationEspace> getReservationEspaces() {
 		return reservationEspaces;
