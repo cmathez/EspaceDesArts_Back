@@ -47,10 +47,11 @@ public class Oeuvre {
 	private List<Avis> avisOeuvre;
 	
 	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "espaceExposition",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Avis> avisEspaceExposition;
 	
-
+	
 	
 	//association avec reclamation
 //	@JsonBackReference

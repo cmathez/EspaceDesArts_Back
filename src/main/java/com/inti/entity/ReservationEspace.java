@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ReservationEspace implements Serializable {
@@ -27,6 +28,7 @@ public class ReservationEspace implements Serializable {
 
 	//association avec evenement
 	//@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "reservationEspace",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Evenement> evenements;
 
