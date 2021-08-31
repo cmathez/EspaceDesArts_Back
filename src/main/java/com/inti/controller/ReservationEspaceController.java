@@ -78,6 +78,11 @@ public class ReservationEspaceController {
 		return reservationEspaceService.findByAccepte();
 	}
 	
+	@GetMapping("/expositions/{idArtiste}")
+	public List<ReservationEspace> findByAccepteAndIdArtiste(@PathVariable("idArtiste") Long idArtiste){
+		return reservationEspaceService.findByAccepteAndIdArtiste(idArtiste);
+	}
+	
 	@GetMapping("/reservationEspace/{idReservationEspace}")
 	public ReservationEspace findOne(@PathVariable("idReservationEspace") Long id) {
 		return reservationEspaceService.findOne(id);

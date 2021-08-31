@@ -13,4 +13,7 @@ import com.inti.entity.ReservationEspace;
 public interface ReservationEspaceRepository extends JpaRepository<ReservationEspace, Long> {
 	@Query(value="SELECT * FROM reservation_espace WHERE accepte=1", nativeQuery = true)
 	public List<ReservationEspace> findByAccepte();
+	
+	@Query(value="SELECT * FROM reservation_espace WHERE accepte=1 AND id_artiste=?1", nativeQuery = true)
+	public List<ReservationEspace> findByAccepteAndIdArtiste(Long idArtiste);
 }
