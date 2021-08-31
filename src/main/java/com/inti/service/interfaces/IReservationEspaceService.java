@@ -16,4 +16,6 @@ public interface IReservationEspaceService {
 	
 	List<ReservationEspace> findByAccepte();
 	
+	public List<ReservationEspace> findByAccepteAndIdArtiste(Long idArtiste);
+	
 }

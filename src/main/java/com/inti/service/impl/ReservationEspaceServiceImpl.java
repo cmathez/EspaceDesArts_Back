@@ -42,5 +42,10 @@ public class ReservationEspaceServiceImpl implements IReservationEspaceService{
 		return reservationEspaceRepository.findByAccepte();
 	}
 	
+	@Override
+	public List<ReservationEspace> findByAccepteAndIdArtiste(Long idArtiste) {
+		return reservationEspaceRepository.findByAccepteAndIdArtiste(idArtiste);
+	}
+	
 	
 }
