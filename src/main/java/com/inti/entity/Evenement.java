@@ -95,10 +95,8 @@ public class Evenement {
 		this.reservationEspace = reservationEspace;
 	}
 
-	@Override
-	public String toString() {
-		return "Evenement [idEvenement=" + idEvenement + ", nomEvenement=" + nomEvenement + ", dateDebut=" + dateDebut
-				+ ", dateFin=" + dateFin + ", description=" + description + "]";
-	}
+	
+
+	
 
 }

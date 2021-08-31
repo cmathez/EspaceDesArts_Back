@@ -57,13 +57,15 @@ public class ReservationEspaceController {
 	}
 	
 	@PutMapping("/reservationEspace/{idReservationEspace}")
-	public ReservationEspace updateReservationEspace(@PathVariable("id") Long idReservationEspace, @RequestBody ReservationEspace reservationEspace ) {
-		ReservationEspace currentReservationEspace = reservationEspaceService.findOne(idReservationEspace);
+	public ReservationEspace updateReservationEspace(@PathVariable("idReservationEspace") String idReservationEspace) {
+		System.out.println("///////////////////");
+		ReservationEspace reservation = reservationEspaceService.findOne(Long.parseLong(idReservationEspace));
 		
-		currentReservationEspace.setDateDebut(reservationEspace.getDateDebut());
-		currentReservationEspace.setDateFin(reservationEspace.getDateFin());
+		reservation.setAccepte(true);						
 		
-		return reservationEspaceService.saveReservationEspace(currentReservationEspace);
+		System.out.println("///////////////////////////////////// \n" + reservation);
+
+		return reservationEspaceService.saveReservationEspace(reservation);
 	}
 
 	@GetMapping("/reservationEspace")
